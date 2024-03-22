@@ -1,0 +1,87 @@
+Docker install 
+
+- sudo apt update
+- sudo su
+- apt install docker.io
+
+Docker Basic CLI commands
+
+- docker info  --> Information adout docker 
+
+- docker image --> Show the avilable image
+
+- docker ps    --> Show how many container Run 
+
+- docker ps -a  --> Show how many container installed in instance
+
+- docker run -itd -p"1234:80" httpd  --> to run image as containers
+- docker run -itd -p"1231:80" httpd  --> to run image as containers      
+
+- docker stop <cont-id/name>    --> Stop the container 
+- docker start <cont-id/name>   --> Start the container
+
+
+- docker run -itp -p"forward:default" jenkins:tag
+- docker run -itp -p"9090:8080" jenkins:20.39    --> run container without image locally
+
+
+- docker rm <cont-id/name>    --> remove the stoped container
+- docker rm -f <cont-id/name> --> force remove the container even it is running
+- docker rmi <cont-id/name>   --> remove image locally 
+
+- docker inspect <cont-id/name>   --> all the information of the container
+- docker logs <cont-id/name>      --> logs of the container
+- docker stats <cont-id/name>     --> Status of the container memory space occupied 
+- docker top <cont-id/name>       --> Taskmanger of the container optimization 
+
+
+Commit or load our image in docker Hub
+
+container to image 
+
+- docker commit <cont-id/name> newname:tag    -->Create image from container
+
+-
+
+
+
+Volume Sync
+
+docker run -itp -p"1212:80" -v"/home/ubuntu/webpage:/usr/local/apache2/htdocs" httpd
+
+default path: /usr/local/apache2/htdocs 
+-v : volume 
+-p : port
+
+
+create volume 
+
+docker volume create name 
+
+
+
+
+
+
+
+
+Docker File to Image 
+
+File name Should be Dockerfile
+
+To run docker file
+
+-  docker build -t myimage:v1 /opt/.
+                   ---------- -----
+                   newimgname Path of dockerfile  	  
+
+
+
+
+
+
+ docker run -itd --name webserver -p"80:80" -v"/usr/local/apache2/logs" httpd
+
+
+ docker run -itd --name ssh -p"1212:22" --volumes-from webserver:ro connect:v3
+
